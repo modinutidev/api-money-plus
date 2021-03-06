@@ -1,7 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 
 @Controller('movimentacao')
-export class MovimentacaoController {
-  @Get()
-  index() {}
-}
+export class MovimentacaoController {}

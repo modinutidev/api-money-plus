@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class Pessoa {
+export class PessoaDto {
   @ApiProperty()
   nome: string;
 
