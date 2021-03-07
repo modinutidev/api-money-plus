@@ -1,5 +1,5 @@
-import { PessoaEntity } from './pessoa.entity';
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { PessoaEntity } from './pessoa.entity';
 import { ApiBody } from '@nestjs/swagger';
 import { PessoaDto } from './pessoa.dto';
 import { PessoaService } from './pessoa.service';

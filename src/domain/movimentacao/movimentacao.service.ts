@@ -1,16 +1,21 @@
 import { Movimentacao } from './movimentacao.interface';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { MovimentacaoEntity } from './movimentacao.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class MovimentacaoService {
-  movimentacoes: Movimentacao[] = [];
+  constructor(
+    @InjectRepository(MovimentacaoEntity)
+    private movimentacaoRepository: Repository<MovimentacaoEntity>,
+  ) {}
 
-  findAll(): Movimentacao[] {
-    return this.movimentacoes;
+  async findAll(): Promise<MovimentacaoEntity[]> {
+    return await this.movimentacaoRepository.find();
   }
 
-  create(movimentacao: Movimentacao): Movimentacao {
-    this.movimentacoes.push(movimentacao);
-    return movimentacao;
+  async create(movimentacao: Movimentacao): Promise<MovimentacaoEntity> {
+    return await this.movimentacaoRepository.save(movimentacao);
   }
 }
