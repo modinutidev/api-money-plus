@@ -1,8 +1,8 @@
-import { Movimentacao } from './movimentacao.interface';
+import { MovimentacaoDto } from './movimentacao.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MovimentacaoEntity } from './movimentacao.entity';
 import { Repository } from 'typeorm';
+import { MovimentacaoEntity } from './movimentacao.entity';
 
 @Injectable()
 export class MovimentacaoService {
@@ -15,7 +15,7 @@ export class MovimentacaoService {
     return await this.movimentacaoRepository.find();
   }
 
-  async create(movimentacao: Movimentacao): Promise<MovimentacaoEntity> {
+  async create(movimentacao: MovimentacaoDto): Promise<MovimentacaoEntity> {
     return await this.movimentacaoRepository.save(movimentacao);
   }
 }

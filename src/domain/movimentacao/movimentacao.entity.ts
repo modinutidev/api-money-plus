@@ -1,10 +1,8 @@
+import { CoreEntity } from 'src/core/core.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class MovimentacaoEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class MovimentacaoEntity extends CoreEntity {
   @Column()
   descricao: string;
 
