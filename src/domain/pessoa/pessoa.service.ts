@@ -1,16 +1,21 @@
+import { PessoaEntity } from './pessoa.entity';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Pessoa } from './pessoa.interface';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PessoaService {
-  private pessoas: Pessoa[] = [];
+  constructor(
+    @InjectRepository(PessoaEntity)
+    private pessoaRepository: Repository<PessoaEntity>,
+  ) {}
 
-  findAll(): Pessoa[] {
-    return this.pessoas;
+  async findAll(): Promise<PessoaEntity[]> {
+    return await this.pessoaRepository.find();
   }
 
-  create(pessoa: Pessoa): Pessoa {
-    this.pessoas.push(pessoa);
-    return pessoa;
+  async create(pessoa: Pessoa): Promise<PessoaEntity> {
+    return await this.pessoaRepository.save(pessoa);
   }
 }
